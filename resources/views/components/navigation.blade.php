@@ -43,7 +43,7 @@
 @endphp
 
 {{-- Desktop floating rail --}}
-<aside class="fixed inset-y-4 left-4 z-40 hidden w-[76px] flex-col items-center rounded-[30px] border border-line/80 bg-surface/95 py-4 shadow-float backdrop-blur lg:flex" aria-label="Navigasi utama">
+<aside id="app-sidebar" class="app-rail fixed inset-y-4 left-4 z-40 hidden w-[76px] flex-col items-center rounded-[30px] border border-line/80 bg-surface/95 py-4 shadow-float backdrop-blur lg:flex" aria-label="Navigasi utama">
     <a href="{{ route('dashboard') }}" class="rounded-2xl" aria-label="SIPERIZ, dashboard">
         <x-brand class="h-11 w-11" />
     </a>

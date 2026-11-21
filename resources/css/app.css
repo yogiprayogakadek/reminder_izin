@@ -315,3 +315,25 @@
         animation: none;
     }
 }
+
+@media (min-width: 1024px) {
+    .app-shell {
+        padding-left: 108px;
+        transition: padding-left 200ms ease;
+    }
+
+    html[data-sidebar='closed'] .app-shell {
+        padding-left: 0;
+    }
+
+    .app-rail {
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+    }
+
+    html[data-sidebar='closed'] .app-rail {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-16px);
+        pointer-events: none;
+    }
+}

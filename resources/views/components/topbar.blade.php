@@ -10,6 +10,17 @@
             <x-icon name="menu" :size="20" />
         </button>
 
+        <button
+            type="button"
+            data-sidebar-toggle
+            class="icon-button hidden lg:inline-flex"
+            aria-controls="app-sidebar"
+            aria-expanded="true"
+            aria-label="Alihkan navigasi"
+        >
+            <x-icon name="menu" :size="20" />
+        </button>
+
         <div class="hidden min-w-0 sm:block">
             <p class="truncate text-[20px] font-bold leading-tight tracking-[-0.03em] text-ink sm:text-[23px]">Halo, {{ $firstName }}!</p>
             <p class="truncate text-[11.5px] text-muted">{{ now()->locale('id')->translatedFormat('l, d F Y') }} &middot; Pantau izin yang perlu diperpanjang</p>

@@ -95,3 +95,37 @@ document.addEventListener('keydown', (event) => {
         first.focus();
     }
 });
+
+const sidebarKey = 'siperiz.sidebar';
+
+const sidebarClosed = () => document.documentElement.dataset.sidebar === 'closed';
+
+const syncSidebarToggle = () => {
+    document.querySelectorAll('[data-sidebar-toggle]').forEach((button) => {
+        button.setAttribute('aria-expanded', String(!sidebarClosed()));
+    });
+};
+
+const toggleSidebar = () => {
+    const closed = !sidebarClosed();
+
+    if (closed) {
+        document.documentElement.dataset.sidebar = 'closed';
+    } else {
+        delete document.documentElement.dataset.sidebar;
+    }
+
+    localStorage.setItem(sidebarKey, closed ? 'closed' : 'open');
+    syncSidebarToggle();
+};
+
+document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element) || !event.target.closest('[data-sidebar-toggle]')) {
+        return;
+    }
+
+    toggleSidebar();
+});
+
+document.addEventListener('DOMContentLoaded', syncSidebarToggle);
+document.addEventListener('livewire:navigated', syncSidebarToggle);

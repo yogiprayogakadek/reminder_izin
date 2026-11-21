@@ -19,6 +19,14 @@
             })();
         </script>
 
+        <script>
+            (function () {
+                if (localStorage.getItem('siperiz.sidebar') === 'closed') {
+                    document.documentElement.dataset.sidebar = 'closed';
+                }
+            })();
+        </script>
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="mesh min-h-screen font-sans text-ink antialiased">
@@ -29,7 +37,7 @@
         <div x-data="{ mobileOpen: false }" x-on:keydown.escape.window="mobileOpen = false" class="min-h-screen">
             <x-navigation />
 
-            <div class="min-w-0 lg:pl-[108px]">
+            <div class="app-shell min-w-0">
                 <x-topbar />
                 <main id="main-content" class="mx-auto w-full max-w-[1280px] px-4 pb-16 pt-4 sm:px-6 lg:px-7">
                     {{ $slot }}
