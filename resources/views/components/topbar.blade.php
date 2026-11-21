@@ -1,10 +1,9 @@
 @php
     $user = auth()->user();
     $unread = $user->unreadNotifications()->count();
-    $firstName = str($user->name)->explode(' ')->first();
 @endphp
 
-<header class="mx-auto w-full max-w-[1280px] px-4 pb-1 pt-5 sm:px-6 lg:px-7">
+<header class="mx-auto w-full max-w-[1800px] px-4 pb-2 pt-5 sm:px-6 lg:px-8">
     <div class="flex items-center gap-3">
         <button type="button" class="icon-button lg:hidden" x-on:click="mobileOpen = true" aria-label="Buka navigasi">
             <x-icon name="menu" :size="20" />
@@ -20,11 +19,6 @@
         >
             <x-icon name="menu" :size="20" />
         </button>
-
-        <div class="hidden min-w-0 sm:block">
-            <p class="truncate text-[20px] font-bold leading-tight tracking-[-0.03em] text-ink sm:text-[23px]">Halo, {{ $firstName }}!</p>
-            <p class="truncate text-[11.5px] text-muted">{{ now()->locale('id')->translatedFormat('l, d F Y') }} &middot; Pantau izin yang perlu diperpanjang</p>
-        </div>
 
         <div class="ml-auto flex items-center gap-2">
             <form method="GET" action="{{ route('permits.index') }}" role="search" class="relative hidden md:block">

@@ -34,14 +34,22 @@
             Lewati ke konten utama
         </a>
 
-        <div x-data="{ mobileOpen: false }" x-on:keydown.escape.window="mobileOpen = false" class="min-h-screen">
+        <div x-data="{ mobileOpen: false }" x-on:keydown.escape.window="mobileOpen = false" class="flex min-h-screen flex-col">
             <x-navigation />
 
-            <div class="app-shell min-w-0">
+            <div class="app-shell flex min-w-0 flex-1 flex-col">
                 <x-topbar />
-                <main id="main-content" class="mx-auto w-full max-w-[1280px] px-4 pb-16 pt-4 sm:px-6 lg:px-7">
+
+                <main id="main-content" class="mx-auto w-full max-w-[1800px] flex-1 px-4 pb-12 pt-3 sm:px-6 lg:px-8">
                     {{ $slot }}
                 </main>
+
+                <footer class="mx-auto w-full max-w-[1800px] px-4 pb-6 sm:px-6 lg:px-8">
+                    <div class="flex flex-col gap-1 border-t border-line pt-4 text-[11px] text-muted sm:flex-row sm:items-center sm:justify-between">
+                        <p>SIPERIZ &copy; {{ now()->year }} &middot; Pemantau masa berlaku izin perusahaan</p>
+                        <p>Dibuat oleh <span class="font-semibold text-ink-2">Yogi Prayoga</span></p>
+                    </div>
+                </footer>
             </div>
         </div>
     </body>

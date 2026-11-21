@@ -10,7 +10,10 @@
 @endphp
 
 <div class="space-y-5">
-    <x-page-header title="Ringkasan izin" description="Pantau izin yang paling dekat kedaluwarsa dan pastikan jalur reminder tetap sehat.">
+    <div>
+        <p class="text-[11px] font-medium text-muted">{{ now()->locale('id')->translatedFormat('l, d F Y') }}</p>
+
+        <x-page-header class="mt-1" title="Ringkasan izin" description="Pantau izin yang paling dekat kedaluwarsa dan pastikan jalur reminder tetap sehat.">
         <x-slot name="actions">
             <a href="{{ route('permits.index') }}" wire:navigate class="btn-secondary">Lihat semua izin</a>
             @can('manage-permits')
@@ -29,7 +32,8 @@
                 @endif
             @endcan
         </x-slot>
-    </x-page-header>
+        </x-page-header>
+    </div>
 
     @if ($wahaWarning)
         <div class="flex flex-wrap items-center gap-3 rounded-2xl border border-warning/30 bg-warning-soft px-4 py-3 text-warning" role="status">

@@ -52,7 +52,7 @@
 
             <footer class="px-4 pb-6 text-center text-[11px] text-muted sm:px-8">
                 <p>SIPERIZ &copy; {{ now()->year }} &middot; Pemantau masa berlaku izin perusahaan</p>
-                <p class="mt-1">Akses terbatas untuk pengguna terdaftar.</p>
+                <p class="mt-1">Dibuat oleh Yogi Prayoga &middot; Akses terbatas untuk pengguna terdaftar.</p>
             </footer>
         </div>
     </body>
