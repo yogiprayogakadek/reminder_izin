@@ -1,0 +1,317 @@
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+@theme {
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+    --color-page: #edf5fa;
+    --color-surface: #ffffff;
+    --color-surface-2: #f7fbfd;
+    --color-ink: #0b1f33;
+    --color-ink-2: #40566b;
+    --color-muted: #586f83;
+    --color-line: #dbe7f0;
+    /* Control borders: 3:1 against surface and page (WCAG 1.4.11). */
+    --color-line-strong: #71869b;
+    --color-primary: #0369a1;
+    --color-primary-hover: #075985;
+    --color-primary-soft: #e0f2fe;
+    --color-on-primary: #ffffff;
+    --color-success: #047857;
+    --color-success-soft: #d1fae5;
+    --color-warning: #92400e;
+    --color-warning-soft: #fef3c7;
+    --color-danger: #b91c1c;
+    --color-danger-soft: #fee2e2;
+    --color-info: #0369a1;
+    --color-info-soft: #e0f2fe;
+    --color-neutral-soft: #eef2f6;
+
+    --radius-bento: 24px;
+    --radius-panel: 20px;
+    --radius-control: 12px;
+
+    --shadow-bento: 0 2px 4px -2px rgb(11 31 51 / 0.04), 0 12px 32px -12px rgb(11 31 51 / 0.12);
+    --shadow-float: 0 18px 48px -18px rgb(11 31 51 / 0.22), 0 4px 14px -6px rgb(11 31 51 / 0.08);
+}
+
+:root {
+    color-scheme: light;
+    --mesh-a: rgb(14 165 233 / 0.14);
+    --mesh-b: rgb(56 189 248 / 0.1);
+    --mesh-c: rgb(255 255 255 / 0.7);
+}
+
+.dark {
+    color-scheme: dark;
+
+    --color-page: #07131f;
+    --color-surface: #0d1e2c;
+    --color-surface-2: #102536;
+    --color-ink: #e7f1f8;
+    --color-ink-2: #b6ccdb;
+    --color-muted: #93adc0;
+    --color-line: #1c3447;
+    --color-line-strong: #5b7f99;
+    --color-primary: #38bdf8;
+    --color-primary-hover: #7dd3fc;
+    --color-primary-soft: #0b3249;
+    --color-on-primary: #04141f;
+    --color-success: #6ee7b7;
+    --color-success-soft: #063c2e;
+    --color-warning: #fcd34d;
+    --color-warning-soft: #402c06;
+    --color-danger: #fca5a5;
+    --color-danger-soft: #45171a;
+    --color-info: #7dd3fc;
+    --color-info-soft: #0a3148;
+    --color-neutral-soft: #152b3d;
+
+    --mesh-a: rgb(14 165 233 / 0.12);
+    --mesh-b: rgb(2 132 199 / 0.08);
+    --mesh-c: rgb(7 19 31 / 0.3);
+
+    --shadow-bento: 0 2px 4px -2px rgb(0 0 0 / 0.25), 0 18px 40px -22px rgb(0 0 0 / 0.7);
+    --shadow-float: 0 24px 60px -24px rgb(0 0 0 / 0.8), 0 6px 18px -8px rgb(0 0 0 / 0.5);
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-line);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-page font-sans text-ink antialiased;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        background: var(--color-primary);
+        color: var(--color-on-primary);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+
+    a[href],
+    select:not(:disabled),
+    input[type='checkbox']:not(:disabled),
+    input[type='radio']:not(:disabled),
+    label[for],
+    label:has(input[type='checkbox']:not(:disabled)),
+    label:has(input[type='radio']:not(:disabled)),
+    summary {
+        cursor: pointer;
+    }
+
+    button:disabled,
+    select:disabled,
+    input:disabled,
+    textarea:disabled {
+        cursor: not-allowed;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--color-muted);
+        opacity: 1;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-line-strong) transparent;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border: 3px solid transparent;
+        border-radius: 999px;
+        background-clip: padding-box;
+        background-color: var(--color-line-strong);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@utility mesh {
+    background-color: var(--color-page);
+    background-image:
+        radial-gradient(ellipse 55% 42% at 0% 0%, var(--mesh-a), transparent 68%),
+        radial-gradient(ellipse 42% 38% at 100% 4%, var(--mesh-b), transparent 72%),
+        linear-gradient(180deg, var(--mesh-c) 0%, transparent 32%);
+}
+
+@utility card {
+    @apply rounded-bento border border-line/80 bg-surface shadow-bento;
+}
+
+@utility card-flat {
+    @apply rounded-bento border border-line/80 bg-surface;
+}
+
+@utility card-title {
+    @apply text-[17px] font-bold tracking-[-0.02em] text-ink;
+}
+
+@utility section-title {
+    @apply text-[14px] font-bold tracking-[-0.01em] text-ink;
+}
+
+@utility micro-label {
+    @apply text-[11px] font-medium text-muted;
+}
+
+@utility stat-value {
+    @apply text-[28px] font-bold tracking-[-0.03em] tabular-nums text-ink;
+}
+
+@utility btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-primary px-5 text-[13px] font-semibold text-on-primary shadow-sm transition duration-150 hover:bg-primary-hover active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility btn-secondary {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-line-strong bg-surface px-4 text-[13px] font-semibold text-ink transition duration-150 hover:border-primary/40 hover:bg-primary-soft/60 hover:text-primary active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility btn-ghost {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-3 text-[13px] font-semibold text-ink-2 transition duration-150 hover:bg-primary-soft/60 hover:text-primary disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility btn-danger {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-danger px-4 text-[13px] font-semibold text-white transition duration-150 hover:brightness-110 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility btn-danger-soft {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-danger-soft px-4 text-[13px] font-semibold text-danger transition duration-150 hover:brightness-95 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50;
+}
+
+@utility icon-button {
+    @apply inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line/80 bg-surface text-ink-2 shadow-sm transition duration-150 hover:border-primary/40 hover:bg-primary-soft/60 hover:text-primary;
+}
+
+@utility field {
+    @apply min-h-11 w-full rounded-control border border-line-strong bg-surface px-3.5 text-[13px] text-ink shadow-sm transition placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/20;
+}
+
+@utility field-sm {
+    @apply min-h-11 w-full rounded-control border border-line-strong bg-surface px-3 text-[12px] text-ink shadow-sm transition placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/20;
+}
+
+@utility field-label {
+    @apply mb-1.5 block text-[12px] font-semibold text-ink;
+}
+
+@utility field-hint {
+    @apply mt-1.5 text-[11px] leading-4 text-muted;
+}
+
+@utility pill {
+    @apply inline-flex min-h-6 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-semibold;
+}
+
+@utility pill-success {
+    @apply bg-success-soft text-success;
+}
+
+@utility pill-warning {
+    @apply bg-warning-soft text-warning;
+}
+
+@utility pill-danger {
+    @apply bg-danger-soft text-danger;
+}
+
+@utility pill-info {
+    @apply bg-info-soft text-info;
+}
+
+@utility pill-neutral {
+    @apply bg-neutral-soft text-ink-2;
+}
+
+@utility nav-item {
+    @apply flex min-h-11 items-center gap-3 rounded-2xl px-3 text-[13px] font-medium text-ink-2 transition duration-150 hover:bg-primary-soft/70 hover:text-primary;
+}
+
+@utility nav-item-active {
+    @apply bg-primary text-on-primary shadow-sm hover:bg-primary hover:text-on-primary;
+}
+
+@utility table-head {
+    @apply px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.1em] text-muted;
+}
+
+@utility table-cell {
+    @apply px-4 py-3.5 text-[12px] text-ink;
+}
+
+@utility link {
+    @apply font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition hover:decoration-primary;
+}
+
+@utility divider {
+    @apply border-t border-line;
+}
+
+@utility skeleton {
+    @apply animate-pulse rounded-xl bg-neutral-soft;
+}
+
+@utility line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skeleton {
+        animation: none;
+    }
+}
