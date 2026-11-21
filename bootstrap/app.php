@@ -23,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'active' => EnsureUserIsActive::class,
         ]);
 
+        $middleware->encryptCookies(except: [
+            'siperiz_sidebar',
+        ]);
+
         $middleware->validateCsrfTokens(except: [
             'api/webhooks/waha',
         ]);

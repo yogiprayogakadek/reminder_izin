@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (request()->cookie('siperiz_sidebar') === 'closed') data-sidebar="closed" @endif>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,14 +16,6 @@
                 const stored = localStorage.getItem('theme');
                 const dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
                 document.documentElement.classList.toggle('dark', dark);
-            })();
-        </script>
-
-        <script>
-            (function () {
-                if (localStorage.getItem('siperiz.sidebar') === 'closed') {
-                    document.documentElement.dataset.sidebar = 'closed';
-                }
             })();
         </script>
 
