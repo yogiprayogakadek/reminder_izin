@@ -1,7 +1,7 @@
 @php
     $user = auth()->user();
     $unread = $user->unreadNotifications()->count();
-    $sidebarClosed = request()->cookie('siperiz_sidebar') === 'closed';
+    $sidebarExpanded = request()->cookie('siperiz_sidebar') === 'expanded';
 @endphp
 
 <header class="mx-auto w-full max-w-[1800px] px-4 pb-2 pt-5 sm:px-6 lg:px-8">
@@ -15,8 +15,8 @@
             data-sidebar-toggle
             class="icon-button hidden lg:inline-flex"
             aria-controls="app-sidebar"
-            aria-expanded="{{ $sidebarClosed ? 'false' : 'true' }}"
-            aria-label="{{ $sidebarClosed ? 'Tampilkan navigasi' : 'Sembunyikan navigasi' }}"
+            aria-expanded="{{ $sidebarExpanded ? 'true' : 'false' }}"
+            aria-label="{{ $sidebarExpanded ? 'Ringkas navigasi' : 'Perluas navigasi' }}"
         >
             <x-icon name="menu" :size="20" />
         </button>

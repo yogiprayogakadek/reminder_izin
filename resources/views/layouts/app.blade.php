@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (request()->cookie('siperiz_sidebar') === 'closed') data-sidebar="closed" @endif>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @if (request()->cookie('siperiz_sidebar') === 'expanded') data-sidebar="expanded" @endif>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

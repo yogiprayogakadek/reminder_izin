@@ -322,18 +322,33 @@
         transition: padding-left 200ms ease;
     }
 
-    html[data-sidebar='closed'] .app-shell {
-        padding-left: 0;
+    html[data-sidebar='expanded'] .app-shell {
+        padding-left: 296px;
     }
 
     .app-rail {
-        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+        width: 76px;
+        transition: width 200ms ease;
     }
 
-    html[data-sidebar='closed'] .app-rail {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(-16px);
-        pointer-events: none;
+    html[data-sidebar='expanded'] .app-rail {
+        width: 264px;
+        padding-inline: 12px;
+    }
+
+    .app-rail-compact {
+        display: flex;
+    }
+
+    .app-rail-expanded {
+        display: none;
+    }
+
+    html[data-sidebar='expanded'] .app-rail-compact {
+        display: none;
+    }
+
+    html[data-sidebar='expanded'] .app-rail-expanded {
+        display: flex;
     }
 }

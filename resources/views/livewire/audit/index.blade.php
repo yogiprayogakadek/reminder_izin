@@ -3,7 +3,7 @@
 
     <x-settings-tabs />
 
-    <section class="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Ringkasan audit">
+    <section class="grid grid-cols-2 gap-3 xl:grid-cols-4" aria-label="Ringkasan audit">
         <div class="card-flat p-4">
             <p class="micro-label">Total entri</p>
             <p class="stat-value mt-1">{{ number_format($summary['total'], 0, ',', '.') }}</p>

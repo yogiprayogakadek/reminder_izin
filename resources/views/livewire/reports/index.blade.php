@@ -55,7 +55,7 @@
         </div>
     </div>
 
-    <section class="grid grid-cols-2 gap-3 lg:grid-cols-4" aria-label="Ringkasan laporan" wire:loading.class="opacity-60" wire:target="from,to,categoryId,setPeriod,resetFilters">
+    <section class="grid grid-cols-2 gap-3 xl:grid-cols-4" aria-label="Ringkasan laporan" wire:loading.class="opacity-60" wire:target="from,to,categoryId,setPeriod,resetFilters">
         <div class="card-flat p-4">
             <p class="micro-label">Jatuh tempo pada periode</p>
             <p class="stat-value mt-1">{{ number_format($periodCount, 0, ',', '.') }}</p>

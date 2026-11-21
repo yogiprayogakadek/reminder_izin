@@ -98,28 +98,28 @@ document.addEventListener('keydown', (event) => {
 
 const sidebarCookie = 'siperiz_sidebar';
 
-const sidebarClosed = () => document.documentElement.dataset.sidebar === 'closed';
+const sidebarExpanded = () => document.documentElement.dataset.sidebar === 'expanded';
 
 const syncSidebarToggle = () => {
-    const closed = sidebarClosed();
+    const expanded = sidebarExpanded();
 
     document.querySelectorAll('[data-sidebar-toggle]').forEach((button) => {
-        button.setAttribute('aria-expanded', String(!closed));
-        button.setAttribute('aria-label', closed ? 'Tampilkan navigasi' : 'Sembunyikan navigasi');
+        button.setAttribute('aria-expanded', String(expanded));
+        button.setAttribute('aria-label', expanded ? 'Ringkas navigasi' : 'Perluas navigasi');
     });
 };
 
 const toggleSidebar = () => {
-    const closed = !sidebarClosed();
+    const expanded = !sidebarExpanded();
 
-    if (closed) {
-        document.documentElement.dataset.sidebar = 'closed';
+    if (expanded) {
+        document.documentElement.dataset.sidebar = 'expanded';
     } else {
         delete document.documentElement.dataset.sidebar;
     }
 
     try {
-        document.cookie = `${sidebarCookie}=${closed ? 'closed' : 'open'}; path=/; max-age=31536000; SameSite=Lax`;
+        document.cookie = `${sidebarCookie}=${expanded ? 'expanded' : 'collapsed'}; path=/; max-age=31536000; SameSite=Lax`;
     } catch {
         // Cookie diblokir: state hanya bertahan sampai halaman dimuat ulang.
     }

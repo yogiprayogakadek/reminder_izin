@@ -45,7 +45,7 @@
         </div>
     @endif
 
-    <section aria-label="Ringkasan angka" class="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <section aria-label="Ringkasan angka" class="grid grid-cols-2 gap-3 xl:grid-cols-4">
         <div class="card-flat p-4">
             <div class="flex items-start justify-between gap-2">
                 <div>
