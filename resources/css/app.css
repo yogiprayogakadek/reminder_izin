@@ -351,4 +351,9 @@
     html[data-sidebar='expanded'] .app-rail-expanded {
         display: flex;
     }
+
+    /* Menu horizontal halaman sudah diwakili grup sidebar saat sidebar lebar. */
+    html[data-sidebar='expanded'] .page-subnav {
+        display: none;
+    }
 }

@@ -43,6 +43,23 @@ class LayoutTest extends TestCase
             ->assertSee('Aturan reminder');
     }
 
+    public function test_settings_and_notification_pages_mark_horizontal_tabs_for_sidebar_deduplication(): void
+    {
+        $this->seed();
+
+        $admin = User::query()->where('email', 'admin@siperiz.test')->firstOrFail();
+
+        $this->actingAs($admin)
+            ->get(route('settings.waha'))
+            ->assertSuccessful()
+            ->assertSee('page-subnav', false);
+
+        $this->actingAs($admin)
+            ->get(route('contacts.index'))
+            ->assertSuccessful()
+            ->assertSee('page-subnav', false);
+    }
+
     public function test_application_layout_renders_footer_without_greeting(): void
     {
         $this->seed();

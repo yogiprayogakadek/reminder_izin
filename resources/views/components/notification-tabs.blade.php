@@ -8,7 +8,7 @@
 @endphp
 
 @if (count($tabs) > 1)
-    <nav class="-mx-1 flex flex-wrap gap-1 pb-1 sm:flex-nowrap sm:overflow-x-auto" aria-label="Menu notifikasi">
+    <nav class="page-subnav -mx-1 flex flex-wrap gap-1 pb-1 sm:flex-nowrap sm:overflow-x-auto" aria-label="Menu notifikasi">
         @foreach ($tabs as $tab)
             <a
                 href="{{ route($tab['route']) }}"
